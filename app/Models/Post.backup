@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Illuminate\Database\Eloquent\Model;
+// class Post extends Model
+
+class Post
+{
+    // use HasFactory;
+    private static $data = [
+        [
+            "judul" => "Judul Pertama",
+            "slug" => "judul-pertama",
+            "author" => "Taufiq Vhunakoshi",
+            "content" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo quis voluptates voluptatibus ea praesentium labore doloribus amet! Corrupti magni sunt obcaecati ex porro molestiae nisi at eos rerum. Reprehenderit sequi iste fugiat natus ex atque fuga totam delectus, itaque voluptatum inventore nihil saepe dicta perferendis nulla culpa cumque minus, illum, asperiores a rerum esse distinctio beatae dolore. Iste corporis tempore pariatur ducimus perspiciatis cumque optio sunt nulla commodi. Alias dolore pariatur accusantium asperiores facilis sit optio non, expedita animi? Facilis?"
+        ],
+        [
+            "judul" => "Judul Kedua",
+            "slug" => "judul-kedua",
+            "author" => "Bambang Pemangkas",
+            "content" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nemo quis voluptates voluptatibus ea praesentium labore doloribus amet! Corrupti magni sunt obcaecati ex porro molestiae nisi at eos rerum. Reprehenderit sequi iste fugiat natus ex atque fuga totam delectus, itaque voluptatum inventore nihil saepe dicta perferendis nulla culpa cumque minus, illum, asperiores a rerum esse distinctio beatae dolore. Iste corporis tempore pariatur ducimus perspiciatis cumque optio sunt nulla commodi. Alias dolore pariatur accusantium asperiores facilis sit optio non, expedita animi? Facilis?"
+        ]
+    ];
+
+    public static function all(){
+        // self karena data static
+        return collect(self::$data);
+    }
+
+    public static function find($slug){
+        $post = static::all();
+        return $post->firstWhere('slug', $slug);
+    }
+}
