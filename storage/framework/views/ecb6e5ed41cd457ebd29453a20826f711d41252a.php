@@ -1,0 +1,1 @@
+<h1>Welcome, Taufiq Hidayat</h1><?php /**PATH B:\Application\latihanravael\resources\views/dashboard/index.blade.php ENDPATH**/ ?>
