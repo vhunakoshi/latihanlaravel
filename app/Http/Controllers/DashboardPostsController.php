@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardPostsController extends Controller
@@ -48,8 +49,8 @@ class DashboardPostsController extends Controller
             'content' => 'required'
         ]);
 
-        $validatedData['user_id'] = auth()->user->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 200);
 
         Post::create($validatedData);
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
@@ -101,12 +102,11 @@ class DashboardPostsController extends Controller
             $rules['slug'] = 'required|unique:posts';
         }
 
-        $validateData = $request->validate($rules);
-        $validatedData['user_id'] = auth()->user->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        $validatedData = $request->validate($rules);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->content), 200);
 
-        Post::where('id', $post->id)
-                ->update($validatedData);
+        Post::where('id', $post->id)->update($validatedData);
         return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
     }
 

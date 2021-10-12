@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8">
-      <form method="post" action="/dashboard/posts">
+      <form method="post" action="/dashboard/posts" class="mb-5">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -44,7 +44,7 @@
             @error('content')
                 <p class="text-danger">{{ $message }}</p>
             @enderror
-            <input id="content" type="hidden" name="content" value="{{old('content', $post->content)}}">
+            <input id="content" type="hidden" name="content" value="{{old('content')}}">
             <trix-editor input="content"></trix-editor>
         </div>
         <button type="submit" class="btn btn-primary">Create Post</button>

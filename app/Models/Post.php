@@ -10,6 +10,16 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
+    // public static function all(){
+    //     // self karena data static
+    //     return collect(self::$data);
+    // }
+
+    // public static function find($slug){
+    //     $post = static::all();
+    //     return $post->firstWhere('slug', $slug);
+    // }
+
     // fillable digunakan untuk field yang hanya dapat diubah
     // protected $fillable = ['title', 'slug', 'excerpt', 'content'];
 
