@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardPostsController;
+use App\Http\Controllers\DashboardCategoryController;
 
 
 /*
@@ -39,7 +40,9 @@ Route::get('/dashboard', function() {
 
 Route::get('/dashboard/posts/checkSlug', [DashboardPostsController::class, 'checkSlug'])->middleware('auth');
 Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');
+Route::resource('/dashboard/categories', DashboardCategoryController::class)->except('show')->middleware('admin');
 
+// except = pengecualian
 // Route::get('/categories/{category:slug}', function(Category $category) {
 //     return view('posts', [
 //         'title' => 'Post By Category : '.$category->name,

@@ -23,7 +23,14 @@
 
     @if ($post->count())
         <div class="card mb-3">
-            <img src="https://source.unsplash.com/1200x400?{{$post[0]->category->name}}" class="card-img-top" alt="...">
+            @if($posts[0]->image)
+            <div style="max-height: 350px; overflow:hidden">
+                <img src="{{ asset('storage/' . $posts[0]->image) }}" class="img-fluid" alt="{{$posts[0]->category->name}}">
+            </div>
+            @else
+                <img src="https://source.unsplash.com/1200x400?{{$post[0]->category->name}}" class="card-img-top" alt="{{$posts[0]->category->name}}">
+            @endif
+
             <div class="card-body text-center">
                 <h3 class="card-title">
                 <a href="/post/{{ $post[0]->slug }}" class="text-decoration-none text-dark">{{ $post[0]->title }}</a>
@@ -44,7 +51,11 @@
                 <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="position-absolute px-3 py-2 text-white" style="background-color: rgba(0,0,0,0.7)"><a href="/blog?category={{$dat->category->slug}}" class="text-white text-decoration-none">{{$dat->category->name}}</a></div>
-                        <img src="https://source.unsplash.com/300x300?{{$dat->category->name}}" class="card-img-top" alt="{{$dat->category->name}}">
+                        @if($post->image)
+                            <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{$post->category->name}}">
+                        @else
+                            <img src="https://source.unsplash.com/300x300?{{$dat->category->name}}" class="card-img-top" alt="{{$dat->category->name}}">
+                        @endif
                         <div class="card-body">
                         <h3 class="card-title"<a href="/post/{{ $dat->slug }}" class="text-decoration-none">{{ $dat->title }}</a></h3>
                         <p>By. <a href="/blog?author={{$dat->author->username}}" class="text-decoration-none">{{ $dat->author->name }}</a>
