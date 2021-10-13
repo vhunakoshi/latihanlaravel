@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
         Post::factory(20)->create();
         Category::factory(3)->create();
 
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+
+
         // User::create([
         //     'name' => 'Taufiq Hidayat',
         //     'email' => 'taufiqvhunakoshi@gmail.com',

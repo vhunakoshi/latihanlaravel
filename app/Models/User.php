@@ -21,6 +21,7 @@ class User extends Authenticatable
     //     'username',
     //     'email',
     //     'password',
+    //     'role_id,
     // ];
 
     protected $guarded = ['id'];
@@ -45,6 +46,14 @@ class User extends Authenticatable
     ];
 
     public function posts() {
-        return $this->hasMany(POst::class);
+        return $this->hasMany(Post::class);
     }
+
+    // public function role() {
+    //     return $this->belongsTo(Role::class);
+    // }
+    
+    // public function hasPermission($permission) {
+    //     return $this->role->permissions()->where('name', $permission)->first() ?? false;
+    // }
 }
