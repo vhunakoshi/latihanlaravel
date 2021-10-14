@@ -15,7 +15,7 @@ class DashboardCategoryController extends Controller
     public function index()
     {
         // gates
-        // $this->authorize('admin');
+        $this->authorize('admin');
         return view('dashboard.categories.index', [
             'categories' => Category::all()
         ]);
